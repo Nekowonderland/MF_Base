@@ -1,81 +1,84 @@
--- MACHINE FRAME MK1 --
-
--- Item --
-local mfI = {}
-mfI.type = "item"
-mfI.name = "MachineFrame"
-mfI.icon = "__MF_Base__/graphics/items/MachineFrame.png"
-mfI.icon_size = 64
-mfI.subgroup = "MFFrame"
-mfI.order = "a"
-mfI.stack_size = 150
-data:extend{mfI}
-
--- Recipe --
-local mfR = {}
-mfR.type = "recipe"
-mfR.name = "MachineFrame"
-mfR.energy_required = 1
-mfR.ingredients =
+data:extend({
+    -- Recipe :: MachineFrame
     {
-      {"DimensionalOre", 7}
-    }
-mfR.result = "MachineFrame"
-data:extend{mfR}
+        type = "recipe",
+        name = "MachineFrame",
+        energy_required = 1,
+        ingredients =
+        {
+            {type = "item", name = "DimensionalOre", amount = 7}
+        },
+        results =
+        {
+            {type = "item", name = "MachineFrame", amount = 1}
+        },
+    },
 
-
--- MACHINE FRAME MK2 --
-
--- Item --
-local mf2I = {}
-mf2I.type = "item"
-mf2I.name = "MachineFrame2"
-mf2I.icon = "__MF_Base__/graphics/items/MachineFrame2.png"
-mf2I.icon_size = 64
-mf2I.subgroup = "MFFrame"
-mf2I.order = "b"
-mf2I.stack_size = 150
-data:extend{mf2I}
-
--- Recipe --
-local mf2R = {}
-mf2R.type = "recipe"
-mf2R.name = "MachineFrame2"
-mf2R.energy_required = 1.5
-mf2R.enabled = false
-mf2R.ingredients =
+    -- Recipe :: MachineFrame2
     {
-		{"MachineFrame", 2},
-		{"DimensionalPlate", 6}
-    }
-mf2R.result = "MachineFrame2"
-data:extend{mf2R}
+        type = "recipe",
+        name = "MachineFrame2",
+        energy_required = 1.5,
+        enabled = false,
+        ingredients =
+        {
+            {type = "item", name = "MachineFrame", amount = 2},
+            {type = "item", name = "DimensionalPlate", amount = 6}
+        },
+        results =
+        {
+            {type = "item", name = "MachineFrame2", amount = 1}
+        },
+    },
 
+    -- Recipe :: MachineFrame3
+    {
+        type = "recipe",
+        name = "MachineFrame3",
+        energy_required = 3,
+        enabled = false,
+        category = "DimensionalCrystallizaton",
+        ingredients =
+        {
+            {type = "item", name = "MachineFrame2", amount = 1},
+            {type = "item", name = "DimensionalCrystal", amount = 1}
+        },
+        results =
+        {
+            {type = "item", name = "MachineFrame3", amount = 1}
+        },
+    },
 
--- MACHINE FRAME MK3 --
+    -- Item :: MachineFrame
+    {
+        type = "item",
+        name = "MachineFrame",
+        icon = "__MF_Base__/graphics/items/MachineFrame.png",
+        icon_size = 64,
+        subgroup = "MFFrame",
+        order = "a",
+        stack_size = 150,
+    },
 
--- Item --
-local mf3I = {}
-mf3I.type = "item"
-mf3I.name = "MachineFrame3"
-mf3I.icon = "__MF_Base__/graphics/items/MachineFrame3.png"
-mf3I.icon_size = 64
-mf3I.subgroup = "MFFrame"
-mf3I.order = "c"
-mf3I.stack_size = 150
-data:extend{mf3I}
+    -- Item :: MachineFrame2
+    {
+        type = "item",
+        name = "MachineFrame2",
+        icon = "__MF_Base__/graphics/items/MachineFrame2.png",
+        icon_size = 64,
+        subgroup = "MFFrame",
+        order = "b",
+        stack_size = 150,
+    },
 
--- Recipe --
-local mf3R = {}
-mf3R.type = "recipe"
-mf3R.name = "MachineFrame3"
-mf3R.energy_required = 3
-mf3R.enabled = false
-mf3R.category = "DimensionalCrystallizaton"
-mf3R.ingredients =
-{
-    {"MachineFrame2", 1},
-	  {"DimensionalCrystal", 1}
-}
-mf3R.result = "MachineFrame3"
-data:extend{mf3R}
+    -- Item :: MachineFrame3
+    {
+        type = "item",
+        name = "MachineFrame3",
+        icon = "__MF_Base__/graphics/items/MachineFrame3.png",
+        icon_size = 64,
+        subgroup = "MFFrame",
+        order = "c",
+        stack_size = 150,
+    },
+})

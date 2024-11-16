@@ -20,7 +20,7 @@ dlP.on_animation =
             scale = 0.5
         },
         {
-            filename = "__base__/graphics/entity/lab/hr-lab-integration.png",
+            filename = "__base__/graphics/entity/lab/lab-integration.png",
             width = 242,
             height = 162,
             frame_count = 1,
@@ -31,7 +31,7 @@ dlP.on_animation =
             scale = 0.5
         },
         {
-            filename = "__base__/graphics/entity/lab/hr-lab-shadow.png",
+            filename = "__base__/graphics/entity/lab/lab-shadow.png",
             width = 242,
             height = 136,
             frame_count = 1,
@@ -48,56 +48,63 @@ dlP.off_animation =
     {
       layers =
       {
-        {
-            filename = "__MF_Base__/graphics/entities/DimensionalLab.png",
-            width = 194,
-            height = 174,
-            frame_count = 1,
-            shift = util.by_pixel(0, 1.5),
-            scale = 0.5
-        },
-        {
-            filename = "__base__/graphics/entity/lab/hr-lab-integration.png",
-            width = 242,
-            height = 162,
-            frame_count = 1,
-            shift = util.by_pixel(0, 15.5),
-            scale = 0.5
-        },
-        {
-            filename = "__base__/graphics/entity/lab/hr-lab-shadow.png",
-            width = 242,
-            height = 136,
-            frame_count = 1,
-            shift = util.by_pixel(13, 11),
-            draw_as_shadow = true,
-            scale = 0.5
-        }
+          {
+              filename = "__MF_Base__/graphics/entities/DimensionalLab.png",
+              width = 194,
+              height = 174,
+              frame_count = 1,
+              shift = util.by_pixel(0, 1.5),
+              scale = 0.5
+          },
+          {
+              filename = "__base__/graphics/entity/lab/lab-integration.png",
+              width = 242,
+              height = 162,
+              frame_count = 1,
+              shift = util.by_pixel(0, 15.5),
+              scale = 0.5
+          },
+          {
+              filename = "__base__/graphics/entity/lab/lab-shadow.png",
+              width = 242,
+              height = 136,
+              frame_count = 1,
+              shift = util.by_pixel(13, 11),
+              draw_as_shadow = true,
+              scale = 0.5
+          }
       }
-    }
-dlP.inputs = {"DimensionalSample", "DimensionalCrystal"}
-data:extend{dlP}
+  }
+  dlP.inputs = {"DimensionalSample", "DimensionalCrystal"}
 
--- Item --
-local dlI = {}
-dlI.type = "item"
-dlI.name = "DimensionalLab"
-dlI.icon = "__MF_Base__/graphics/items/DimensionalLab.png"
-dlI.icon_size = 32
-dlI.subgroup = "MFStructure"
-dlI.order = "a"
-dlI.place_result = "DimensionalLab"
-dlI.stack_size = 10
-data:extend{dlI}
+  data:extend({
+      -- Lab :: DimensionalLab
+      dlP,
 
--- Recipe --
-local dlR = {}
-dlR.type = "recipe"
-dlR.name = "DimensionalLab"
-dlR.energy_required = 5
-dlR.ingredients =
-    {
-      {"MachineFrame", 5},
-    }
-dlR.result = "DimensionalLab"
-data:extend{dlR}
+      -- Recipe :: DimensionalLab
+      {
+          type = "recipe",
+          name = "DimensionalLab",
+          energy_required = 5,
+          ingredients =
+          {
+              {type = "item", name = "MachineFrame", amount =5 }
+          },
+          results =
+          {
+              {type = "item", name = "DimensionalLab", amount = 1}
+          },
+      },
+
+      -- Item :: DimensionalLab
+      {
+          type = "item",
+          name = "DimensionalLab",
+          icon = "__MF_Base__/graphics/items/DimensionalLab.png",
+          icon_size = 32,
+          subgroup = "MFStructure",
+          order = "a",
+          place_result = "DimensionalLab",
+          stack_size = 10,
+      },
+  })
