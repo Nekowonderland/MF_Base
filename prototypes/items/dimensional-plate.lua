@@ -1,24 +1,29 @@
--- Item --
-local dpI = {}
-dpI.type = "item"
-dpI.name = "DimensionalPlate"
-dpI.icon = "__MF_Base__/graphics/items/DimensionalPlate.png"
-dpI.icon_size = 64
-dpI.subgroup = "MFIntermediate"
-dpI.order = "b"
-dpI.stack_size = 1000
-data:extend{dpI}
-
--- Recipe --
-local dpR = {}
-dpR.type = "recipe"
-dpR.name = "DimensionalPlate"
-dpR.energy_required = 1
-dpR.category = "DimensionalSmelting"
-dpR.enabled = false
-dpR.ingredients =
+data:extend({
+    -- Recipe ::DimensionalPlate
     {
-		{"DimensionalOre", 2}
-    }
-dpR.result = "DimensionalPlate"
-data:extend{dpR}
+        type = "recipe",
+        name = "DimensionalPlate",
+        energy_required = 1,
+        category = "DimensionalSmelting",
+        enabled = false,
+        ingredients =
+        {
+            {type = "item", name = "DimensionalOre", amount = 2}
+        },
+        results =
+        {
+            {type = "item", name = "DimensionalPlate", amount = 1}
+        },
+    },
+
+    -- Item :: DimensionalPlate
+    {
+        type = "item",
+        name = "DimensionalPlate",
+        icon = "__MF_Base__/graphics/items/DimensionalPlate.png",
+        icon_size = 64,
+        subgroup = "MFIntermediate",
+        order = "b",
+        stack_size = 1000,
+    },
+})

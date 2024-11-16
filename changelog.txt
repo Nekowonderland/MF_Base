@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.5.1
+Date: 21.10.2024
+  Scripting:
+    - Added compatibility for Factorio 2.0.0
+  Known issues:
+    - The image for the "Dimensional Fluid" isn't working, so we used the crude oil one
+    - The map generator didn't add the ores and fluids in the start area
+---------------------------------------------------------------------------------------------------
 Version: 0.5.0
 Date: 15/04/2021
   Changes:
