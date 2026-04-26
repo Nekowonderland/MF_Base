@@ -136,7 +136,7 @@ function EI.findEIStructures(obj, laser)
     local ents = obj.ent.surface.find_entities_filtered{area={{x1, y1}, {x2, y2}}}
     for _, ent in pairs(ents) do
         if ent ~= nil and ent.valid == true and tableType[ent.name] ~= nil then
-            local ei = global.entsTable[ent.unit_number] or global.objectsTable[ent.unit_number]
+            local ei = storage.entsTable[ent.unit_number] or storage.objectsTable[ent.unit_number]
             if ei~= nil and ei.ent ~= nil and ei.ent.valid == true then
                 if laser ~= true and EI.energy(obj) > EI.energy(ei) and tableType[ent.name].canAccept == true then
                     table.insert(eiTable, ei)
@@ -202,11 +202,11 @@ end
 
 -- Mix Quatron Level --
 function EI.mixQuatron(obj, newCharge, newLevel)
-	local effectiveCharge = (EI.energy(obj)) * math.pow(EI.energyLevel(obj), _mfQuatronScalePower) + newCharge * math.pow(newLevel, _mfQuatronScalePower)
+	local effectiveCharge = (EI.energy(obj)) * (EI.energyLevel(obj) ^ _mfQuatronScalePower) + newCharge * (newLevel ^ _mfQuatronScalePower)
     if obj.energyCharge ~= nil then
         obj.energyCharge = EI.energy(obj) + newCharge
     else
         obj.ent.energy = EI.energy(obj) + newCharge
     end
-	obj.energyLevel = math.pow(effectiveCharge / EI.energy(obj), 1/_mfQuatronScalePower)
+	obj.energyLevel = (effectiveCharge / EI.energy(obj)) ^ (1/_mfQuatronScalePower)
 end

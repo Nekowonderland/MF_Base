@@ -22,7 +22,7 @@ dfE.result_inventory_size = 1
 dfE.crafting_speed = 2
 dfE.energy_usage = "180kW"
 dfE.source_inventory_size = 1
-dfE.energy_source = {type="electric",usage_priority="secondary-input",emissions_per_minute=1}
+dfE.energy_source = {type="electric",usage_priority="secondary-input",emissions_per_minute={pollution=1}}
 dfE.vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 }
 dfE.fast_replaceable_group = nil
 dfE.working_sound =
@@ -124,9 +124,9 @@ dfR.energy_required = 3
 dfR.enabled = false
 dfR.ingredients =
     {
-		{"MachineFrame", 8}
+		{type="item", name="MachineFrame", amount=8}
     }
-dfR.result = "DimensionalFurnace"
+dfR.results = {{type="item", name="DimensionalFurnace", amount=1}}
 data:extend{dfR}
 
 -- Technology --

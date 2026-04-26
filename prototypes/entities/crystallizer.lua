@@ -23,24 +23,18 @@ cE.fluid_boxes =
     {
       {
         production_type = "input",
-        pipe_picture = assembler2pipepictures(),
-        pipe_covers = pipecoverspictures(),
-        base_area = 10,
-        base_level = -1,
-        pipe_connections = {{ type="input", position = {0, -2} }},
+        volume = 100,
+        pipe_connections = {{ flow_direction="input", direction=defines.direction.north, position = {0, -1} }},
         secondary_draw_orders = { north = -1 }
       },
       {
         production_type = "output",
-        pipe_picture = assembler2pipepictures(),
-        pipe_covers = pipecoverspictures(),
-        base_area = 10,
-        base_level = 1,
-        pipe_connections = {{ type="output", position = {0, 2} }},
+        volume = 100,
+        pipe_connections = {{ flow_direction="output", direction=defines.direction.south, position = {0, 1} }},
         secondary_draw_orders = { north = -1 }
       },
-      off_when_no_fluid_recipe = true
     }
+cE.fluid_boxes_off_when_no_fluid_recipe = true
 cE.collision_box = {{-1.2, -1.2}, {1.2, 1.2}}
 cE.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
 cE.animation =
@@ -96,7 +90,7 @@ cE.energy_source =
     {
       type = "electric",
       usage_priority = "secondary-input",
-      emissions_per_minute = 3
+      emissions_per_minute = {pollution=3}
     }
 cE.energy_usage = "800kW"
 cE.module_specification =
@@ -126,8 +120,8 @@ cR.energy_required = 5
 cR.enabled = false
 cR.ingredients =
     {
-      {"MachineFrame2", 8},
-      {"DimensionalCircuit", 35}
+      {type="item", name="MachineFrame2", amount=8},
+      {type="item", name="DimensionalCircuit", amount=35}
     }
-cR.result = "Crystallizer"
+cR.results = {{type="item", name="Crystallizer", amount=1}}
 data:extend{cR}

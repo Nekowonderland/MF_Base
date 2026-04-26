@@ -17,7 +17,7 @@ end
 -- Used to do a protected Function call --
 function mfCall(fName, ...)
 	-- Dont use pcall() if the game is in Instrument mode --
-	if game.active_mods["debugadapter"] then
+	if script.active_mods["debugadapter"] then
 		fName(...)
 		return
 	end
@@ -73,37 +73,45 @@ end
 
 -- Return the localised Entity Name --
 function Util.getLocEntityName(entName)
-	if game.entity_prototypes[entName] ~= nil then
-		return game.entity_prototypes[entName].localised_name
+	if prototypes.entity[entName] ~= nil then
+		return prototypes.entity[entName].localised_name
 	end
 end
 
 -- Return the localised Item Name --
 function Util.getLocItemName(itemName)
-	if game.item_prototypes[itemName] ~= nil then
-		return game.item_prototypes[itemName].localised_name
+	if prototypes.item[itemName] ~= nil then
+		return prototypes.item[itemName].localised_name
 	end
 end
 
 -- Return the localised Fluid Name --
 function Util.getLocFluidName(fluidName)
-	if game.fluid_prototypes[fluidName] ~= nil then
-		return game.fluid_prototypes[fluidName].localised_name
+	-- F2: game.fluid_prototypes → prototypes.fluid
+	-- if game.fluid_prototypes[fluidName] ~= nil then
+	-- 	return game.fluid_prototypes[fluidName].localised_name
+	if prototypes.fluid[fluidName] ~= nil then
+		return prototypes.fluid[fluidName].localised_name
 	end
 end
 
 -- Return the localised Recipe Name --
 function Util.getLocRecipeName(recipeName)
-	if game.recipe_prototypes[recipeName] ~= nil then
-		return game.recipe_prototypes[recipeName].localised_name
+	-- F2: game.recipe_prototypes → prototypes.recipe
+	-- if game.recipe_prototypes[recipeName] ~= nil then
+	-- 	return game.recipe_prototypes[recipeName].localised_name
+	if prototypes.recipe[recipeName] ~= nil then
+		return prototypes.recipe[recipeName].localised_name
 	end
 end
 
 -- Reset an Animation --
-function Util.resetAnimation(animId, totalFrame)
-	local animSpeed = rendering.get_animation_speed(animId)
+function Util.resetAnimation(animObj, totalFrame)
+	-- F2: rendering.draw_animation returns LuaRenderObject; use obj methods
+	if animObj == nil or type(animObj) == "number" or not animObj.valid then return end
+	local animSpeed = animObj.animation_speed
 	local currentFrame = math.floor((game.tick * animSpeed) % totalFrame)
-	rendering.set_animation_offset(animId, 0 - currentFrame)
+	animObj.animation_offset = 0 - currentFrame
 end
 
 -- Unlock a recipe for all Players --
@@ -128,7 +136,9 @@ end
 function Util.createTilesAtPosition(position, radius, surface, tileName, force)
 	-- Check all variables --
 	if position == nil or radius == nil or surface == nil then return end
-	if tileName == nil then tileName = "tutorial-grid" end
+	-- F2: "tutorial-grid" removed; default replaced with "lab-dark-1"
+	-- if tileName == nil then tileName = "tutorial-grid" end
+	if tileName == nil then tileName = "lab-dark-1" end
 	-- Ajust the radius --
 	radius = radius - 1
 	-- Create all tiles --
@@ -141,7 +151,9 @@ function Util.createTilesAtPosition(position, radius, surface, tileName, force)
 			local replace = true
 			for k, tile in pairs(tilesFind) do
 				-- this check can somehow destroy Equalizer and kill player. See knownbugs.txt[1]
-				if tileName == "tutorial-grid" and tile.name ~= "VoidTile" then
+				-- F2: condition updated to match new default tile name
+				-- if tileName == "tutorial-grid" and tile.name ~= "VoidTile" then
+				if tileName == "lab-dark-1" and tile.name ~= "VoidTile" then
 					replace = false
 				end
 			end

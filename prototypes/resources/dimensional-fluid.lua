@@ -9,6 +9,9 @@ dmFR.icon = "__MF_Base__/graphics/resources/DimensionalFluidI.png"
 dmFR.icon_size = 64
 dmFR.stages = table.deepcopy(data.raw.resource["crude-oil"].stages)
 dmFR.stages["sheet"]["filename"] = "__MF_Base__/graphics/resources/DimensionalFluid.png"
+dmFR.stages["sheet"]["width"] = 75
+dmFR.stages["sheet"]["height"] = 61
+dmFR.stages["sheet"]["line_length"] = 4
 dmFR.stage_counts = data.raw.resource["crude-oil"].stage_counts
 dmFR.map_color = {102/255, 0, 102/255}
 dmFR.category = "basic-fluid"
@@ -65,10 +68,7 @@ dmFAPC.name = "DimensionalFluid"
 dmFAPC.richness = true
 data:extend{dmFAPC}
 
-local dmFNL = {}
-dmFNL.name = "DimensionalFluid"
-dmFNL.type = "noise-layer"
-data:extend{dmFNL}
+-- Noise Layer removed (not a valid prototype type in Factorio 2.0)
 
 -- Dimensional Fluid to Water --
 local wR = {}

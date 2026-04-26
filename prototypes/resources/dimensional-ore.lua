@@ -64,11 +64,7 @@ dmOI.order = "a"
 dmOI.stack_size = 1000
 data:extend{dmOI}
 
--- Noise Layer --
-local dmONL = {}
-dmONL.name = "DimensionalOre"
-dmONL.type = "noise-layer"
-data:extend{dmONL}
+-- Noise Layer removed (not a valid prototype type in Factorio 2.0)
 
 -- Recipe --
 local dmOR = {}
@@ -77,10 +73,9 @@ dmOR.name = "DimensionalOre"
 dmOR.energy_required = 1
 dmOR.ingredients =
     {
-      {"DimensionalSample", 3}
+      {type="item", name="DimensionalSample", amount=3}
     }
-dmOR.result = "DimensionalOre"
-dmOR.result_count = 1
+dmOR.results = {{type="item", name="DimensionalOre", amount=1}}
 data:extend{dmOR}
 
 -- Technology --
@@ -110,8 +105,7 @@ sR.enabled = false
 sR.energy_required = 0.3
 sR.ingredients =
     {
-      {"DimensionalOre", 1}
+      {type="item", name="DimensionalOre", amount=1}
     }
-sR.result = "stone"
-sR.result_count = 3
+sR.results = {{type="item", name="stone", amount=3}}
 data:extend{sR}
